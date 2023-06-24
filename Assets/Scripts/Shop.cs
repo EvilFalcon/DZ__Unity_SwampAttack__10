@@ -28,12 +28,14 @@ public class Shop : MonoBehaviour
         TrySellWeapon(weapon, view);
     }
 
-    private void TrySellWeapon(Weapon weapon, WeaponView view)
+    private void TrySellWeapon(Weapon weaponPrefab, WeaponView view)
     {
-        if(weapon.Price <= _player.Money)
+        if (weaponPrefab.Price <= _player.Money)
         {
+            var weapon = Instantiate(weaponPrefab);
+
             _player.BuyWeapon(weapon);
-            weapon.Buy();
+            weaponPrefab.Buy();
             view.SellButtonClick -= OnSellButtonClick;
         }
     }
